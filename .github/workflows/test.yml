@@ -11,12 +11,14 @@ jobs:
     strategy:
       matrix:
         python-version:
+          - "3.13"
+          - "3.12"
           - "3.11"
           - "3.10"
           - "3.9"
         pyqt-dependency:
-          - "PyQt6"
-          - "PySide6"
+          - "PyQt"
+          - "PySide"
 
     steps:
       - uses: "actions/checkout@v3"
@@ -30,16 +32,18 @@ jobs:
         run: |
           # Project dependencies from pyproject.toml
           # NOTE: Also builds viscm. How do we avoid this?
-          pip install .
+          pip install .[${{ matrix.pyqt-dependency }}]
 
           # Test dependencies
-          pip install pytest pytest-cov pytest-qt pytest-xvfb ${{ matrix.pyqt-dependency }}
+          pip install pytest pytest-cov pytest-qt pytest-xvfb
           # pytest-qt CI dependencies: https://pytest-qt.readthedocs.io/en/latest/troubleshooting.html#github-actions
           sudo apt update
           sudo apt install -y \
             xvfb libegl1 \
             libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0 x11-utils \
             libxcb-cursor0
+
+      - run: pip list
 
       - name: "Run tests"
         run: "make test"
