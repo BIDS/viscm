@@ -26,7 +26,11 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 # matplotlib.rcParams['backend'] = "QtAgg"
 # Do this first before any other matplotlib imports, to force matplotlib to
 # use a Qt backend
-from matplotlib.backends.qt_compat import QtCore, QtGui, QtWidgets
+from matplotlib.backends.qt_compat import (  # type: ignore [attr-defined]
+    QtCore,
+    QtGui,
+    QtWidgets,
+)
 from matplotlib.colors import ListedColormap
 from matplotlib.gridspec import GridSpec
 
@@ -280,9 +284,8 @@ class viscm:
         title(ax, "Perceptual derivative")
         label(
             ax,
-            "Length: {:0.1f}\nRMS deviation from flat: {:0.1f} ({:0.1f}%)".format(
-                arclength, rmse, 100 * rmse / arclength
-            ),
+            f"Length: {arclength:0.1f}\nRMS deviation from flat: "
+            f"{rmse:0.1f} ({100 * rmse / arclength:0.1f}%)",
         )
         ax.set_ylim(-delta_ymax(-local_derivs), delta_ymax(local_derivs))
         ax.get_xaxis().set_visible(False)
@@ -304,11 +307,9 @@ class viscm:
         lightness_rmse = np.std(lightness_derivs)
         label(
             ax,
-            "Length: {:0.1f}\nRMS deviation from flat: {:0.1f} ({:0.1f}%)".format(
-                lightness_arclength,
-                lightness_rmse,
-                100 * lightness_rmse / lightness_arclength,
-            ),
+            f"Length: {lightness_arclength:0.1f}\nRMS deviation from flat: "
+            f"{lightness_rmse:0.1f} "
+            f"({100 * lightness_rmse / lightness_arclength:0.1f}%)",
         )
 
         ax.set_ylim(-delta_ymax(-lightness_derivs), delta_ymax(lightness_derivs))
@@ -666,7 +667,7 @@ class viscm_editor:
             hex_blob = ""
             for color in rgb:
                 for component in color:
-                    hex_blob += "%02x" % (int(round(component * 255)))
+                    hex_blob += f"{int(round(component * 255)):02x}"
             usage_hints = ["red-green-colorblind-safe", "greyscale-safe"]
             if self.cmtype == "diverging":
                 usage_hints.append("diverging")
