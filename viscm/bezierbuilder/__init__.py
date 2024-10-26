@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
 import numpy as np
-from matplotlib.backends.qt_compat import QtCore
+from matplotlib.backends.qt_compat import QtCore  # type: ignore [attr-defined]
 from matplotlib.lines import Line2D
 
 from viscm.bezierbuilder.curve import curve_method
