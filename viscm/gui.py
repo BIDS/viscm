@@ -26,7 +26,11 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 # matplotlib.rcParams['backend'] = "QtAgg"
 # Do this first before any other matplotlib imports, to force matplotlib to
 # use a Qt backend
-from matplotlib.backends.qt_compat import QtCore, QtGui, QtWidgets
+from matplotlib.backends.qt_compat import (  # type: ignore [attr-defined]
+    QtCore,
+    QtGui,
+    QtWidgets,
+)
 from matplotlib.colors import ListedColormap
 from matplotlib.gridspec import GridSpec
 
