@@ -9,6 +9,7 @@ jobs:
   unit-test-and-typecheck:
     runs-on: "ubuntu-latest"
     strategy:
+      fail-fast: false
       matrix:
         python-version:
           - "3.13"
