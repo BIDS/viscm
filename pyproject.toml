@@ -64,13 +64,7 @@ module = [
 ]
 ignore_missing_imports = true
 
-
-
-[tool.black]
-target-version = ["py39", "py310", "py311"]
-
-[tool.ruff]
-target-version = "py39"
+[tool.ruff.lint]
 select = [
   "F",
   "E",
@@ -87,8 +81,8 @@ select = [
   "RUF",
 ]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "viscm/gui.py" = ["N8"]
 
-[tool.ruff.mccabe]
+[tool.ruff.lint.mccabe]
 max-complexity = 11
