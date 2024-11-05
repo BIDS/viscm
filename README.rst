@@ -14,7 +14,7 @@ Contact:
   Nathaniel J. Smith <njs@pobox.com> and Stéfan van der Walt <stefanv@berkeley.edu>
 
 Dependencies:
-  * Python 3.9+
+  * Python 3.10+
   * `colorspacious <https://pypi.python.org/pypi/colorspacious>`_ 1.1+
   * Matplotlib 3.5+
   * NumPy 1.22+
